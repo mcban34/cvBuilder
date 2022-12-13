@@ -1,41 +1,60 @@
-// localStorage.setItem("deneme","");
-
-
-
-
-// str = JSON.stringify(a);
-// str = JSON.stringify(a,"xx"); // (Optional) beautiful indented output.
-// obj = JSON.parse(str);
-// console.log(obj); // Logs output to dev tools console.
-// alert(str); // Displays output using window.alert()
-
-//!değeri ekrana yazdırdım
-// degerAl =  localStorage.getItem("deneme");
-// $(".sonuc").html(degerAl)
-
-
-
 let genelDegerler = {
     isim:"",
     soyisim:"",
     img:""
 }
 
-
 //!inputtan anlık olarak veri çektim
 function veriAl(){
+
+
     userName =  $(".isim").val();
-    $(".isimP").html(userName);
+    denemeisim = $(".isimP");
+    denemeisim.html(userName);
+    surName =  $(".soyisim").val();
+    denemesoyisim = $(".soyisimP");
+    denemesoyisim.html(surName);
 
-    // surName =  $(".soyisim").val();
-    // $(".soyisimP").html(surName);
+    // if(surName=="" && userName==""){
+    //     return;
+    // }
 
-    genelDegerler['isim'] = userName;
-    // genelDegerler['soyisim'] = surName;
+    // if(denemeisim.html(" ")){
+    //     return;
+    // }
+
+    genelDegerler['isim'] = denemeisim.html();
+    genelDegerler['soyisim'] = denemesoyisim.html();
+
     str = JSON.stringify(genelDegerler);
     localStorage.setItem("genelDegerler",str);   
 }
 
+
+//!veri çekme alternatifi
+// $(".verial").change(function (e) { 
+//     e.preventDefault();
+//        userName =  $(".isim").val();
+//     let denemeisim = $(".isimP");
+//     denemeisim.html(userName)
+//     surName =  $(".soyisim").val();
+//     let denemesoyisim = $(".soyisimP");
+//     denemesoyisim.html(surName);
+
+//     if(surName=="" && userName==""){
+//         return;
+//     }
+
+//     // if(denemeisim.html(" ")){
+//     //     return;
+//     // }
+
+//     genelDegerler['isim'] = denemeisim.html();
+//     genelDegerler['soyisim'] = denemesoyisim.html();
+
+//     str = JSON.stringify(genelDegerler);
+//     localStorage.setItem("genelDegerler",str);  
+// });
 
 
 
@@ -47,7 +66,12 @@ obj = JSON.parse(x);
 
 //!son olarak objedeki veriyi ekrana yazdırdım
 $(".isimP").html(obj.isim);
-// $(".soyisimP").html(obj.soyisim);
+$(".soyisimP").html(obj.soyisim);
+
+//!input değerinin içeriği kendi değerleriyle eşleşti
+$(".isim").val(obj.isim);
+$(".soyisim").val(obj.soyisim);
+
 
 
 //!resim çekmek
@@ -62,13 +86,13 @@ input.addEventListener('change', (event) => {
 
     reader.addEventListener('load', () => {
         genelDegerler['img'] = reader.result;
-        str = JSON.stringify(genelDegerler);
-        localStorage.setItem("genelDegerler",str); 
+        strImg = JSON.stringify(genelDegerler);
+        localStorage.setItem("genelDegerler",strImg); 
     });
 });
 
-x =  localStorage.getItem("genelDegerler");
-obj = JSON.parse(x);
+z =  localStorage.getItem("genelDegerler");
+obj = JSON.parse(z);
 console.log(obj)
 
 const previewImage = document.getElementById('preview');
