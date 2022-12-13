@@ -15,7 +15,7 @@ function veriAl(){
     denemesoyisim = $(".soyisimP");
     denemesoyisim.html(surName);
 
-    genelDegerler['isim'] =     tml();
+    genelDegerler['isim'] = denemeisim.html();
     genelDegerler['soyisim'] = denemesoyisim.html();
 
     str = JSON.stringify(genelDegerler);
@@ -82,7 +82,7 @@ input.addEventListener('change', (event) => {
 
     reader.addEventListener('load', () => {
         localStorage.setItem('thumbnail', reader.result);
-        window.location.reload();
+        // window.location.reload();
     });
 
 });
