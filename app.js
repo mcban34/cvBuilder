@@ -1,22 +1,23 @@
+
 let genelDegerler = {
-    isim:"",
-    soyisim:"",
+    isimSoyisim:"",
+    meslek:"",
     
 }
 
 //!inputtan anlık olarak veri çektim
 function veriAl(){
 
-    userName =  $(".isim").val();
+    userName =  $(".isimSoyisim").val();
     denemeisim = $(".isimP");
     denemeisim.html(userName);
 
-    surName =  $(".soyisim").val();
+    surName =  $(".meslek").val();
     denemesoyisim = $(".soyisimP");
     denemesoyisim.html(surName);
 
-    genelDegerler['isim'] = denemeisim.html();
-    genelDegerler['soyisim'] = denemesoyisim.html();
+    genelDegerler['isimSoyisim'] = denemeisim.html();
+    genelDegerler['meslek'] = denemesoyisim.html();
 
     str = JSON.stringify(genelDegerler);
     localStorage.setItem("genelDegerler",str);   
@@ -27,16 +28,16 @@ function veriAl(){
 //!localstoragedeki veriyi parslayıp çektim
 x =  localStorage.getItem("genelDegerler");
 obj = JSON.parse(x);
-
+console.log(x);
 
 
 //!son olarak objedeki veriyi ekrana yazdırdım
-$(".isimP").html(obj.isim);
-$(".soyisimP").html(obj.soyisim);
+$(".isimP").html(obj.isimSoyisim);
+$(".soyisimP").html(obj.meslek);
 
 //!input değerinin içeriği kendi değerleriyle eşleşti
-$(".isim").val(obj.isim);
-$(".soyisim").val(obj.soyisim);
+$(".isimSoyisim").val(obj.isimSoyisim);
+$(".meslek").val(obj.meslek);
 
 
 
@@ -70,10 +71,12 @@ $(".soyisim").val(obj.soyisim);
 // }
 
 
+
 //!resimn çekim altrernatif
 const input = document.getElementById('thumbnail');
 
 input.addEventListener('change', (event) => {
+ 
     const image = event.target.files[0];
 
     const reader = new FileReader();
@@ -81,8 +84,11 @@ input.addEventListener('change', (event) => {
     reader.readAsDataURL(image);
 
     reader.addEventListener('load', () => {
+  
         localStorage.setItem('thumbnail', reader.result);
         // window.location.reload();
+        var div = document.querySelector(".cv-pdf-content");
+        div.outerHTML  = div.outerHTML ;
     });
 
 });
@@ -90,7 +96,8 @@ input.addEventListener('change', (event) => {
 
 const thumbnail = localStorage.getItem('thumbnail');
 
-const previewImage = document.getElementById('preview');
+// const previewImage = document.getElementById('preview');
+const previewImage = document.querySelector(".preview");
 
 if (thumbnail) {
     previewImage.setAttribute('src', thumbnail);
@@ -102,13 +109,16 @@ if (thumbnail) {
 //!save to pdf
 $(".yazdır").click(function (e) { 
     e.preventDefault(); 
-    var element = document.querySelector(".main");
+    var element = document.querySelector(".cv-content");
     html2pdf(element);    
 });
 
 
-
-//!1 saniyede bir sayfa yenileme
-// window.setTimeout( function() {
-//     window.location.reload();
-//   }, 1000);
+$(".hemenbasla").click(function (e) { 
+    e.preventDefault();
+        $(".accordion").slideDown();
+        $(".cv-pdf").addClass("col-9");
+        $(".cv-pdf").removeClass("col-12");
+        $(".cv-pdf-giris").hide();
+        $(".cv-pdf-content").show();
+});
