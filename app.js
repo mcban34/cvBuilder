@@ -1,43 +1,91 @@
 
+
 let genelDegerler = {
-    isimSoyisim:"",
-    meslek:"",
-    
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //!inputtan anlık olarak veri çektim
 function veriAl(){
 
-    userName =  $(".isimSoyisim").val();
-    denemeisim = $(".isimP");
-    denemeisim.html(userName);
 
-    surName =  $(".meslek").val();
-    denemesoyisim = $(".soyisimP");
-    denemesoyisim.html(surName);
+    let  userName =  $(".isimSoyisim").val();
+    let userNamep = $(".isimP");
+    userNamep.html(userName);
 
-    genelDegerler['isimSoyisim'] = denemeisim.html();
-    genelDegerler['meslek'] = denemesoyisim.html();
+    let meslek = $(".meslek").val();
+    let meslekP = $(".meslekP");
+    meslekP.html(meslek)
 
-    str = JSON.stringify(genelDegerler);
-    localStorage.setItem("genelDegerler",str);   
+    localStorage.setItem('emptyObject', JSON.stringify(genelDegerler));
+
+    let user = localStorage.getItem('emptyObject');
+    user = JSON.parse(user);
+    user['isimSoyisim']=userName;
+    user['meslek']=meslek;
+
+
+   
+
+
+    localStorage.setItem('emptyObject', JSON.stringify(user));
+
+
+
+
+
+    $(".isimsoyisimP").html(user.isimSoyisim);
+
+
 }
 
 
 
+
+
+try {
+
+ 
+        x =  localStorage.getItem("emptyObject");
+        obj = JSON.parse(x);
+        console.log(obj)
+        $(".isimsoyisimP").html(obj.isimSoyisim)
+        $(".isimSoyisim").val($(".isimsoyisimP").html())
+
+        $(".meslekP").html(obj.meslek)
+        $(".meslek").val($(".meslekP").html())
+
+
+
+  } catch(error) {
+
+    console.log("henüz veri gelmedi!");
+}
+
+
+
+
 //!localstoragedeki veriyi parslayıp çektim
-x =  localStorage.getItem("genelDegerler");
-obj = JSON.parse(x);
-console.log(x);
+
 
 
 //!son olarak objedeki veriyi ekrana yazdırdım
-$(".isimP").html(obj.isimSoyisim);
-$(".soyisimP").html(obj.meslek);
 
-//!input değerinin içeriği kendi değerleriyle eşleşti
-$(".isimSoyisim").val(obj.isimSoyisim);
-$(".meslek").val(obj.meslek);
+// $(".soyisimP").html(obj.meslek);
+
+// //!input değerinin içeriği kendi değerleriyle eşleşti
+// $(".isimSoyisim").val(obj.isimSoyisim);
+// $(".meslek").val(obj.meslek);
 
 
 
@@ -54,7 +102,7 @@ $(".meslek").val(obj.meslek);
 //     reader.addEventListener('load', () => {
 //         genelDegerler['img'] = reader.result;
 //         strImg = JSON.stringify(genelDegerler);
-//         localStorage.setItem("genelDegerler",strImg); 
+//         localStorage.setItem("genelDegerler",strImg);
 //     });
 // });
 
@@ -76,7 +124,7 @@ $(".meslek").val(obj.meslek);
 const input = document.getElementById('thumbnail');
 
 input.addEventListener('change', (event) => {
- 
+
     const image = event.target.files[0];
 
     const reader = new FileReader();
@@ -84,9 +132,9 @@ input.addEventListener('change', (event) => {
     reader.readAsDataURL(image);
 
     reader.addEventListener('load', () => {
-  
+
         localStorage.setItem('thumbnail', reader.result);
-        // window.location.reload();
+        window.location.reload();
         var div = document.querySelector(".cv-pdf-content");
         div.outerHTML  = div.outerHTML ;
     });
@@ -107,18 +155,9 @@ if (thumbnail) {
 
 
 //!save to pdf
-$(".yazdır").click(function (e) { 
-    e.preventDefault(); 
-    var element = document.querySelector(".cv-content");
-    html2pdf(element);    
-});
-
-
-$(".hemenbasla").click(function (e) { 
+$(".yazdır").click(function (e) {
     e.preventDefault();
-        $(".accordion").slideDown();
-        $(".cv-pdf").addClass("col-9");
-        $(".cv-pdf").removeClass("col-12");
-        $(".cv-pdf-giris").hide();
-        $(".cv-pdf-content").show();
+    var element = document.querySelector(".cv-content");
+    html2pdf(element);
 });
+
