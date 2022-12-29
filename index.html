@@ -32,6 +32,14 @@
                   <input type="text" class="isimSoyisim verial" placeholder="İsim Soyisim" oninput="veriAl()">
                   <input type="text" class="meslek verial" placeholder="Meslek" oninput="veriAl()">
                   <input type="file" id="thumbnail">
+                  <!-- Bir checkbox elementi -->
+                  <label for="input1">İnstagram</label>
+                  <input type="checkbox" class="myCheckbox" data-input="input1">
+                  <input type="checkbox" class="myCheckbox" data-input="input2">
+
+                  <!-- Ona bağlı bir input elementi -->
+                  <input type="text" class="myInput" id="input1">
+                  <input type="text" class="myInput" id="input2">
                 </div>
               </div>
             </div>
@@ -84,9 +92,11 @@
                     <img width="200px" class="preview" style="border: 0;" src="" alt="">
                   </div>
                   <div class="col-8">
-                    <h1>TEST AŞAMASI!</h1>
-                    <h3 class="isimsoyisimP"></h3>
+                    <h4 class="isimsoyisimP"></h4>
                     <p class="meslekP"></p>
+                    <ul>
+                      <li>İnstagram : </li>
+                    </ul>
                     <button class="yazdır">PDF Çıktı</button>
                   </div>
                 </div>

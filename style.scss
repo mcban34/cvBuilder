@@ -38,11 +38,19 @@ input{
         background-image: url(img/plus-lg.svg);
     }
 }
+.myCheckbox{
+    display: inline-block;
+    width: 30% !important;
+}
+.myInput{
+    display: none;
+}
 
 .cv-pdf-content{
     .cv-pdf-cont{
         width: 100%;
         height: 80vh;
         background-color: white;
+        padding: 1rem;
     }
 }

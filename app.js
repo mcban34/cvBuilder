@@ -157,7 +157,25 @@ if (thumbnail) {
 //!save to pdf
 $(".yazdır").click(function (e) {
     e.preventDefault();
-    var element = document.querySelector(".cv-content");
+    var element = document.querySelector(".cv-pdf-cont");
     html2pdf(element);
 });
 
+
+var checkboxes = document.querySelectorAll(".myCheckbox");
+var inputs = document.querySelectorAll(".myInput");
+
+// Her bir checkbox elementine bir dinleyici ekle
+for (var i = 0; i < checkboxes.length; i++) {
+  checkboxes[i].addEventListener("change", function() {
+    // Checkbox'ın ona bağlı input elementini bul
+    var inputId = this.getAttribute("data-input");
+    var input = document.getElementById(inputId);
+
+    if (this.checked) {
+      input.style.display = "block";
+    } else {
+      input.style.display = "none";
+    }
+  });
+}
