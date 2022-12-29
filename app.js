@@ -165,7 +165,6 @@ $(".yazdır").click(function (e) {
 var checkboxes = document.querySelectorAll(".myCheckbox");
 var inputs = document.querySelectorAll(".myInput");
 
-// Her bir checkbox elementine bir dinleyici ekle
 for (var i = 0; i < checkboxes.length; i++) {
   checkboxes[i].addEventListener("change", function() {
     // Checkbox'ın ona bağlı input elementini bul
